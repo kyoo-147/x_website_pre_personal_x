@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Secret Land(秘·境)</title>
+    <meta name="description" content="Secret Land - A technical blog in Robotics, Simultaneous Localization And Mapping(SLAM), Computer Vision(CV), and Artificial Intelligence(AI)." />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://f-1252019270.file.myqcloud.com/blog/assets/images/others/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="https://f-1252019270.file.myqcloud.com/blog/assets/css/screenV8.css" />
+    <link rel="stylesheet" type="text/css" href="https://f-1252019270.file.myqcloud.com/blog/assets/css/railscasts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        .hljs {
+            background: none;
+        }
+    </style>
+
+    <link rel="canonical" href="" />
+    <meta name="referrer" content="origin" />
+
+    <meta property="og:site_name" content="Secret Land" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Secret Land(秘·境)" />
+    <meta property="og:description" content="A technical blog in Robotics, Simultaneous Localization And Mapping(SLAM), Computer Vision(CV), and Artificial Intelligence(AI)." />
+    <meta property="og:url" content="http://zhaoxuhui.top/" />
+    <meta property="og:image" content="https://f-1252019270.file.myqcloud.com/blog/assets/images/index/index22.jpg" />
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+
+    <meta http-equiv="content-language" content="zh-cn">
+
+
+
+</head>
+
+<body class="home-template nav-closed">
+
+    <div class="nav">
+        <h3 class="nav-title">Menu</h3>
+
+        <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+
+        <ul>
+            <li class="nav-home  nav-current" role="presentation"><a href="http://zhaoxuhui.top">Home</a></li>
+            <li class="nav-archive " role="presentation"><a href="http://zhaoxuhui.top/archive">Archive</a></li>
+            <li class="nav-tags " role="presentation"><a href="http://zhaoxuhui.top/tags">Tags</a></li>
+            <li class="nav-about " role="presentation"><a href="http://zhaoxuhui.top/about">About Me</a></li>
+            <li class="nav-My Apps " role="presentation"><a href="http://zhaoxuhui.top/myapps">My Apps</a></li>
+            <li class="nav-Online Tools " role="presentation"><a href="http://zhaoxuhui.top/tools">Online Tools</a></li>
+            <li class="nav-English " role="presentation"><a href="https://translate.google.com/translate?hl=en&sl=zh-CN&u=http://zhaoxuhui.top/">English Version</a></li>
+            <li class="nav-Leave A Message " role="presentation"><a href="http://zhaoxuhui.top/messageboard">Leave A Message</a></li>
+            <li class="nav-RSS " role="presentation"><a href="http://zhaoxuhui.top/feed.xml">RSS Subscription</a></li>
+        </ul>
+
+        <!-- FreeFind -->
+        <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+                <td colspan=2 style="font-family: Arial, Helvetica, sans-serif; font-size: 1.4rem;background-color:#111;border-width:0 ;">
+                    <form style="margin:0px; margin-top:4px;" action="https://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_blank" align="center">
+                        <input type="hidden" name="si" value="29065426">
+                        <input type="hidden" name="pid" value="r">
+                        <input type="hidden" name="n" value="0">
+                        <input type="hidden" name="_charset_" value="">
+                        <input type="hidden" name="bcd" value="&#247;">
+                        <input type="text" name="query" style="width:65%">
+                        <input type="submit" value="search" style="width:25%">
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <!-- <a class="subscribe-button icon-feed" target="_blank" href="https://feed43.com/myfeed.xml">Subscribe</a> -->
+
+        <script type="text/javascript">
+            function sendRequest() {
+                var requestInfo = "randomRequest";
+
+                // 打开连接
+                var ws = new WebSocket("ws://178.128.102.152:4200");
+
+                // 发送数据
+                ws.onopen = function() {
+                    // 使用send()方法发送数据
+                    ws.send(requestInfo);
+                };
+
+                // 接收数据
+                ws.onmessage = function(evt) {
+                    var received_msg = evt.data;
+                    // 作为一个好习惯，在接收完数据后就关闭连接，这样可以减少服务器的负担
+                    ws.close();
+
+                    //window.location.href = received_msg;//本窗口打开网页
+                    window.open(received_msg); //新建窗口打开网页
+                };
+
+                // 关闭连接后的事件
+                ws.onclose = function() {};
+            }
+        </script>
+        <a class="subscribe-button icon-feed" onclick="sendRequest()" style="line-height: 38px;cursor: pointer;">Random Explore</a>
+    </div>
+    <span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <header id="head_bkg" class="main-header " style="background-image: url(https://f-1252019270.file.myqcloud.com//blog/assets/images/index/index22.jpg) ">
+            <nav class="main-nav overlay clearfix">
+                <a class="blog-logo" href="http://zhaoxuhui.top"><img src="https://f-1252019270.file.myqcloud.com/blog/assets/images/others/zxh_banner.png" alt="Blog Logo" /></a>
+
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+
+            </nav>
+            <div class="vertical">
+                <div class="main-header-content inner">
+                    <h1 class="page-title">Secret Land</h1>
+                    <h2 class="page-description">Explore · Discover · Accumulate</h2>
+                </div>
+            </div>
+            <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "url": "http://zhaoxuhui.top",
+                    "logo": "http://zhaoxuhui.top/assets/images/others/logo_big.png"
+                }
+            </script>
+
+            <script type="text/javascript">
+                function goto(flag_number) {
+                    var search_content = document.getElementById(flag_number);
+                    search_content = search_content.value;
+                    if (search_content > 1 && search_content <= 69) {
+                        target_url = "http://zhaoxuhui.top/page" + search_content;
+                    } else {
+                        alert("Out of index,return to homepage.");
+                        target_url = "http://zhaoxuhui.top";
+                    }
+                    window.open(target_url);
+                }
+            </script>
+
+        </header>
+
+        <main id="content" class="content" role="main">
+            <div class="extra-pagination inner">
+
+                <nav class="pagination" role="pagination">
+
+                    <span class="page-number"> 
+	Page <input type="text" id="page_number1" onchange="goto('page_number1')" style="width:20px;text-align:center" value="1"> of 69
+	</span>
+
+                    <a class="older-posts" href="/page2" title="Next Page">Older Posts &raquo;</a>
+
+                </nav>
+
+            </div>
+
+
+            <article class="post">
+                <header class="post-header">
+                    <h2 class="post-title"><a target="_blank" href="/blog/2023/04/23/shot-with-raspberry-camera-module-on-jetson-nano.html">在Jetson Nano平台上利用libargus控制树莓派相机模块拍照</a></h2>
+                </header>
+                <section class="post-excerpt">
+                    <p>
+                        1.Jetson平台相关API介绍 在Jetson平台中，和相机有关的主要就是Multimedia API和Argus API，Argus API可以看作是Multimedia API的一部分。如果需要开发相机相关的程序，Argus一般是会用到的。在这个网页中，列出了Jetpack SDK、...<a class="read-more" target="_blank" href="/blog/2023/04/23/shot-with-raspberry-camera-module-on-jetson-nano.html">&raquo;</a></p>
+                </section>
+                <footer class="post-meta">
+
+                    <a target="_blank" href='about'>Zhao Xuhui</a> posted on April 23, 2023 |
+
+
+                    <a target="_blank" href='http://zhaoxuhui.top/tags#EmbeddedPlatform'><span class="fa fa-tag"></span>EmbeddedPlatform</a>
+
+
+
+                </footer>
+            </article>
+
+            <article class="post">
+                <header class="post-header">
+                    <h2 class="post-title"><a target="_blank" href="/blog/2023/04/13/camera-architecture-on-jetson-platforms.html">NVIDIA Jetson平台视觉软硬件架构与支持的相机</a></h2>
+                </header>
+                <section class="post-excerpt">
+                    <p>
+                        在之前的这篇博客中，我们介绍了在Jetson Nano上使用树莓派CSI相机的基本知识。在这篇博客中，我们将重点介绍Jetson平台中跟相机有关的一些框架和API。 1.Jetson平台相机架构 Jetson平台的Camera Architecture Stack如下，图片来自于官方文档。...<a class="read-more" target="_blank" href="/blog/2023/04/13/camera-architecture-on-jetson-platforms.html">&raquo;</a></p>
+                </section>
+                <footer class="post-meta">
+
+                    <a target="_blank" href='about'>Zhao Xuhui</a> posted on April 13, 2023 |
+
+
+                    <a target="_blank" href='http://zhaoxuhui.top/tags#EmbeddedPlatform'><span class="fa fa-tag"></span>EmbeddedPlatform</a>
+
+
+
+                </footer>
+            </article>
+
+            <article class="post">
+                <header class="post-header">
+                    <h2 class="post-title"><a target="_blank" href="/blog/2023/04/12/raspberry-camera-module-v2-on-nvidia-jetson-nano.html">在NVIDIA Jetson Nano上使用树莓派相机模块(Raspberry Camera V2)</a></h2>
+                </header>
+                <section class="post-excerpt">
+                    <p>
+                        这篇笔记我们简单记录在Jetson Nano上使用树莓派相机的步骤。 1.开发板软硬件环境 我手头的Nano设备是Jetson Nano 4GB版本，如下。 系统安装的是Ubuntu18.04，如下。 利用jtop查看相关信息如下。 同时，在这个网页中，列出了Jetpack SDK、...<a class="read-more" target="_blank" href="/blog/2023/04/12/raspberry-camera-module-v2-on-nvidia-jetson-nano.html">&raquo;</a></p>
+                </section>
+                <footer class="post-meta">
+
+                    <a target="_blank" href='about'>Zhao Xuhui</a> posted on April 12, 2023 |
+
+
+                    <a target="_blank" href='http://zhaoxuhui.top/tags#EmbeddedPlatform'><span class="fa fa-tag"></span>EmbeddedPlatform</a>
+
+
+
+                </footer>
+            </article>
+
+            <article class="post">
+                <header class="post-header">
+                    <h2 class="post-title"><a target="_blank" href="/blog/2023/03/26/nvidia-jetpack-vpi-note3-introduction-and-demos-for-algorithms-in-VPI.html">NVIDIA JetPack VPI笔记3：VPI中各类Algoritm的介绍与基本示例</a></h2>
+                </header>
+                <section class="post-excerpt">
+                    <p>
+                        在本篇笔记中，我们会简单过一遍目前VPI(2.2)支持的一些算法，看看他到底能做些什么，并展示一些官方的示例代码。因为本篇笔记内容比较多，所以并不建议从头到尾全部学习一遍(当然时间充裕也可以)，而是作为工具，用到的时候来查一下相关用法。 1.支持的算法 下面列出的每个算法都有对应的官方文档...
+                        <a class="read-more" target="_blank" href="/blog/2023/03/26/nvidia-jetpack-vpi-note3-introduction-and-demos-for-algorithms-in-VPI.html">&raquo;</a></p>
+                </section>
+                <footer class="post-meta">
+
+                    <a target="_blank" href='about'>Zhao Xuhui</a> posted on March 26, 2023 |
+
+
+                    <a target="_blank" href='http://zhaoxuhui.top/tags#GPU'><span class="fa fa-tag"></span>GPU</a>
+
+
+
+                </footer>
+            </article>
+
+            <article class="post">
+                <header class="post-header">
+                    <h2 class="post-title"><a target="_blank" href="/blog/2023/03/23/nvidia-jetpack-vpi-note2-further-introduction-to-architecture.html">NVIDIA JetPack VPI笔记2：VPI架构和基本概念的进一步介绍</a></h2>
+                </header>
+                <section class="post-excerpt">
+                    <p>
+                        如之前笔记所述，VPI是一个可以在一定程度上替代OpenCV，并且效率更高的库。这篇笔记主要介绍一下VPI的一些架构以及一些示例。 1.VPI的架构 VPI的主要架构如下。 可以看到，主要分为系统层和应用层面。我们编写的Python或者C++程序与VPI交互，VPI通过Streams、E...
+
+                        <a class="read-more" target="_blank" href="/blog/2023/03/23/nvidia-jetpack-vpi-note2-further-introduction-to-architecture.html">&raquo;</a></p>
+                </section>
+                <footer class="post-meta">
+
+                    <a target="_blank" href='about'>Zhao Xuhui</a> posted on March 23, 2023 |
+
+
+                    <a target="_blank" href='http://zhaoxuhui.top/tags#GPU'><span class="fa fa-tag"></span>GPU</a>
+
+
+
+                </footer>
+            </article>
+
+
+
+            <nav class="pagination" role="pagination">
+
+                <span class="page-number"> 
+	Page <input type="text" id="page_number2" onchange="goto('page_number2')" style="width:20px;text-align:center" value="1"> of 69
+	</span>
+
+                <a class="older-posts" href="/page2" title="Next Page">Older Posts &raquo;</a>
+
+            </nav>
+
+
+        </main>
+
+        <!-- FreeFind -->
+        <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+                <td colspan=2 style="font-family: Arial, Helvetica, sans-serif; font-size: 1.4rem;">
+                    <form style="margin:0px; margin-top:4px;" action="https://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_blank" align="center">
+                        <input type="hidden" name="si" value="29065426">
+                        <input type="hidden" name="pid" value="r">
+                        <input type="hidden" name="n" value="0">
+                        <input type="hidden" name="_charset_" value="">
+                        <input type="hidden" name="bcd" value="&#247;">
+                        <input type="text" name="query" style="width:75%">
+                        <input type="submit" value="search" style="width:20%">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left; font-family: Arial, Helvetica, sans-serif;	font-size: 7.5pt; padding-top:4px;">
+                    <a style="text-decoration:none; color:gray;" href="https://www.freefind.com">powered</a><a style="text-decoration:none; color:gray;" href="https://www.freefind.com"> by
+		<span style="color: #606060;">freefind</span></a>
+                </td>
+
+                <td style="text-align:right; font-family: Arial, Helvetica, sans-serif;	font-size: 7.5pt; padding-top:4px;">
+                    <a target="_blank" href="https://search.freefind.com/find.html?si=29065426&amp;pid=a">advanced</a>
+                </td>
+            </tr>
+        </table>
+
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        <span style="text-align:center;display:block;font-family: Arial, Helvetica, sans-serif;font-size:1.3rem;">
+	<a target="_blank" href="http://zhaoxuhui.top/thanks" style="text-decoration:none;">
+	<span id="busuanzi_container_site_uv" style='display:none'>
+	<span id="busuanzi_value_site_uv" ></span> visitors
+        </span>
+
+        <span id="busuanzi_container_site_pv" style='display:none'> viewed <span id="busuanzi_value_site_pv" ></span> times in total.
+        </span>
+        </a>
+        </span>
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://zhaoxuhui.top">Secret Land</a> ❤ 2023</section>
+            <section class="poweredby">Powered by <a target="_blank" href="https://jekyllrb.com/">Jekyll</a></section>
+        </footer>
+    </div>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?da0acfb558f65eb6280e1e94caaf23b3";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117094062-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-117094062-1');
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c, l, a, r, i, t, y) {
+            c[a] = c[a] || function() {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "gnt4od1fjg");
+    </script>
+
+    <script type="text/javascript" src="//js.users.51.la/19418207.js"></script>
+    <script src="https://f-1252019270.file.myqcloud.com/blog/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://f-1252019270.file.myqcloud.com/blog/assets/js/join.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

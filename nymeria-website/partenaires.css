@@ -1,0 +1,121 @@
+/*.listepartenaires {
+	display: flex;
+	justify-content: center;
+}
+
+.partenaire {
+	width: 30vw;
+}
+
+.partenaire img {
+	width: 15vw;
+}
+
+h3 {
+	color: white;	
+	font-family: "IntegralCF-Regular";
+	font-style: italic;
+	letter-spacing: 3px;
+	font-size: 20px;
+}
+
+p {
+	font-family: "Greycliff-CF-Medium";
+	font-size: 20px;
+	width: 50px;
+}
+
+.partlogo {
+	width: 50vw;
+}
+
+/*
+.partlogo {
+	min-height: 400px;
+	  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description {
+	display: flex;
+	justify-content: center;
+}
+
+*/
+
+.listepartenaires {
+	margin-top: 50px;
+	margin-bottom: 200px;
+}
+
+h3 {
+	color: white;
+	font-family: "IntegralCF-Regular";
+	font-style: italic;
+	letter-spacing: 2px;
+	font-size: 20px;
+}
+
+.partlogo img {
+	width: 20vw;
+	max-width: 500px;
+}
+
+.partlogo {
+	min-height: 20vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+.text-container {
+	max-width: 60vw;
+}
+
+.description {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.promo-code {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 50px;
+}
+
+.promo-container {
+	background-color: #fbbc31;
+	color: #11111d;
+	width: 250px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	border-radius: 5px;
+}
+
+p {
+	font-size: 25px;
+}
+
+@media only screen and (max-width: 710px) {
+	p {
+		font-size: 20px;
+	}
+
+
+}
+
+@media only screen and (min-width: 710px) {
+
+	hr {
+		margin-top: 100px;
+		margin-bottom: 100px;
+	}
+}
